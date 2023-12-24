@@ -73,7 +73,6 @@ class _SignUpState extends State<SignUp> {
                   CustomFormField(
                     label: "UserName",
                     hintText: "username",
-                    obsecureText: false,
                     suffixIcon: const SizedBox(),
                     maxLines: 1,
                     textInputAction: TextInputAction.done,
@@ -86,7 +85,6 @@ class _SignUpState extends State<SignUp> {
                   CustomFormField(
                     label: "Email",
                     hintText: "Email",
-                    obsecureText: false,
                     suffixIcon: const SizedBox(),
                     maxLines: 1,
                     textInputAction: TextInputAction.done,
@@ -103,9 +101,7 @@ class _SignUpState extends State<SignUp> {
                     controller: _passwordController,
                     label: "Password",
                     hintText: "At least 8 Character",
-                    obsecureText: true,
-                    suffixIcon: IconButton(
-                        icon: const Icon(Icons.visibility), onPressed: () {}),
+                    passwordFiedl: true,
                   ),
                   const SizedBox(
                     height: 16,

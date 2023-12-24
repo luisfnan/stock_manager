@@ -3,27 +3,35 @@ import 'package:pedidos_app/styles/global_colors.dart';
 
 import '../styles/text_styles.dart';
 
-class CustomFormField extends StatelessWidget {
+class CustomFormField extends StatefulWidget {
   final String label;
   final String hintText;
-  final bool obsecureText;
-  final Widget suffixIcon;
+
+  final bool passwordFiedl;
+  final Widget? suffixIcon;
   final TextInputType textInputType;
   final TextInputAction textInputAction;
   final TextEditingController controller;
   final int maxLines;
 
-  const CustomFormField(
-      {Key? key,
-        required this.label,
-        required this.hintText,
-        required this.obsecureText,
-        required this.suffixIcon,
-        required this.textInputType,
-        required this.textInputAction,
-        required this.controller,
-        required this.maxLines})
-      : super(key: key);
+  const CustomFormField({
+    Key? key,
+    required this.label,
+    required this.hintText,
+    this.suffixIcon,
+    required this.textInputType,
+    required this.textInputAction,
+    required this.controller,
+    required this.maxLines,
+    this.passwordFiedl = false,
+  }) : super(key: key);
+
+  @override
+  State<CustomFormField> createState() => _CustomFormFieldState();
+}
+
+class _CustomFormFieldState extends State<CustomFormField> {
+  bool obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +45,7 @@ class CustomFormField extends StatelessWidget {
             bottom: 10,
           ),
           child: Text(
-            label,
+            widget.label,
             style: KTextStyle.textFieldHeading,
           ),
         ),
@@ -50,16 +58,26 @@ class CustomFormField extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: TextField(
-              maxLines: maxLines,
-              controller: controller,
-              textInputAction: textInputAction,
-              keyboardType: textInputType,
-              obscureText: obsecureText,
+              maxLines: widget.maxLines,
+              controller: widget.controller,
+              textInputAction: widget.textInputAction,
+              keyboardType: widget.textInputType,
+              obscureText: obscureText,
               decoration: InputDecoration(
-                  hintText: hintText,
+                  hintText: widget.hintText,
                   hintStyle: KTextStyle.textFieldHintStyle,
                   border: InputBorder.none,
-                  suffixIcon: suffixIcon),
+                  suffixIcon: widget.passwordFiedl
+                      ? IconButton(
+                          icon: obscureText
+                              ? const Icon(Icons.visibility_off)
+                              : const Icon(Icons.visibility),
+                          onPressed: () {
+                            setState(() {
+                              obscureText = !obscureText;
+                            });
+                          })
+                      : widget.suffixIcon),
             ),
           ),
         )
