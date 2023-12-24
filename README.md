@@ -1,4 +1,4 @@
-# pedidos_app
+# Stock_Manager
 
 A new Flutter project.
 
