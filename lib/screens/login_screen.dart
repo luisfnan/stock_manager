@@ -66,7 +66,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     CustomFormField(
                       label: "Email",
                       hintText: "Email",
-                      obsecureText: false,
                       suffixIcon: const SizedBox(),
                       controller: _emailController,
                       maxLines: 1,
@@ -82,9 +81,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       textInputAction: TextInputAction.done,
                       textInputType: TextInputType.text,
                       hintText: "At least 8 Character",
-                      obsecureText: true,
-                      suffixIcon: IconButton(
-                          icon: const Icon(Icons.visibility), onPressed: () {}),
+                      passwordFiedl: true,
+
                       controller: _passwordController,
                     ),
                     Row(
